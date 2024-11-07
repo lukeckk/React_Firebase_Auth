@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase";
 
 
@@ -17,6 +17,9 @@ export const Home = () => {
 
   //signup function
   const handleSignUp = () => {
+    //return if empty
+    if(!email || !password) return;
+
      createUserWithEmailAndPassword(auth, email, password)
      .then((userCredential) => {
       const user = userCredential.user;
@@ -31,6 +34,23 @@ export const Home = () => {
 
   const handleEmailChange = (event) => setEmail(event.target.value);
   const handlePasswordChange = (event) => setPassword(event.target.value);
+
+  // Sign in function
+  const handleSignIn = () => {
+    // same function as sign up
+    if(!email || !password) return;
+
+     signInWithEmailAndPassword(auth, email, password)
+     .then((userCredential) => {
+      const user = userCredential.user;
+      console.log(user)
+     })
+     .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      console.log(errorCode, errorMessage)
+     })
+  }
 
   return(
     <section>
@@ -51,7 +71,7 @@ export const Home = () => {
             </li>  
           </ul>
           {isSignUpActive && <button type="button" onClick={handleSignUp} >Sign Up</button>}
-          {!isSignUpActive && <button type="button">Sign In</button>}
+          {!isSignUpActive && <button type="button" onClick={handleSignIn} >Sign In</button>}
         </fieldset>
         {isSignUpActive && <a onClick={handleMethodChange}>Login</a>}
         {!isSignUpActive && <a onClick={handleMethodChange}>Create an accout</a>}
