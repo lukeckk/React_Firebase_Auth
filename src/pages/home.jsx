@@ -1,9 +1,10 @@
 import { useState } from "react"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../firebase";
+import { Navigate } from "react-router-dom";
 
 
-export const Home = () => {
+export const Home = ({user}) => {
   // state to store email and password. initialize as empty string, then include the setemail / pass function in input to add to it
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('')
@@ -52,6 +53,9 @@ export const Home = () => {
      })
   }
 
+  if(user) {
+    return <Navigate to='/private'></Navigate>
+  }
   return(
     <section>
       <h2>Homepage</h2>

@@ -37,7 +37,7 @@ function App() {
   return(
     <BrowserRouter>
     <Routes>
-      <Route index path='/' element={<Home></Home>} ></Route>
+      <Route index path='/' element={<Home user={user}></Home>} ></Route>
       <Route index path='/private' element={<ProtectedRoute user={user}><Private></Private></ProtectedRoute>} ></Route>
     </Routes>
     </BrowserRouter>
