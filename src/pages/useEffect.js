@@ -13,6 +13,11 @@ export const TimerComponent = () => {
     // line below will keep adding
     // addNumber()
     console.log('number is updated')
+
+    // if there is a return, this will run first. can be used to clean up eventListener ran previously
+    return () => {
+      console.log('this is the return statement')
+    }
   }, [number])
 
 

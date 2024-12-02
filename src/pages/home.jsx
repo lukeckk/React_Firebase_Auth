@@ -4,6 +4,8 @@ import { auth } from "../firebase";
 import { Navigate } from "react-router-dom";
 import { CounterComponent } from "./useState"
 import { TimerComponent } from "./useEffect"
+import { ThemeProvider } from "./useContextProvider";
+import { ThemeToggler } from "./useContext";
 
 export const Home = ({user}) => {
   // state to store email and password. initialize as empty string, then include the setemail / pass function in input to add to it
@@ -82,11 +84,18 @@ export const Home = ({user}) => {
         {!isSignUpActive && <a onClick={handleMethodChange}>Create an accout</a>}
       </form>
       
-      <p>useState practice below</p>
+      <h4>useState practice below</h4>
       <CounterComponent/>
 
-      <p>useEffect practice below</p>
+      <h4>useEffect practice below</h4>
       <TimerComponent/>
+
+      <h4>useContext practice below</h4>
+      <ThemeProvider>
+        <div>
+          <ThemeToggler/>
+        </div>
+      </ThemeProvider>
     </section>
   )
 }
