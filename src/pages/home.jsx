@@ -6,6 +6,8 @@ import { CounterComponent } from "./useState"
 import { TimerComponent } from "./useEffect"
 import { ThemeProvider } from "./useContextProvider";
 import { ThemeToggler } from "./useContext";
+import { FocusInputExample } from "./useRef";
+import { PreviousStateExample } from "./useRef";
 
 export const Home = ({user}) => {
   // state to store email and password. initialize as empty string, then include the setemail / pass function in input to add to it
@@ -96,6 +98,12 @@ export const Home = ({user}) => {
           <ThemeToggler/>
         </div>
       </ThemeProvider>
+
+      <h4>useRef practice below</h4>
+      <FocusInputExample />
+
+      <h6>useRef example 2</h6>
+      <PreviousStateExample />
     </section>
   )
 }
